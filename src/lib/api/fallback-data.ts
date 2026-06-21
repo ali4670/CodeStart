@@ -1,0 +1,75 @@
+import type { DashboardSummary } from "@/types/codestart";
+
+export const dashboardFallback: DashboardSummary = {
+  user: {
+    id: "fallback-user",
+    fullName: "Omar Hassan",
+    email: "omar.hassan@example.com",
+    grade: "year_3",
+    trackInterest: "software_engineering",
+    avatarUrl: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&w=160&q=80",
+  },
+  greeting: "Good morning, Omar!",
+  todayGoal: {
+    title: "Finish Python loops and solve 3 practice problems",
+    targetMinutes: 90,
+    completedMinutes: 56,
+  },
+  streakDays: 12,
+  currentXP: 1250,
+  nextLevelXP: 2000,
+  level: 5,
+  coins: 840,
+  dailyMission: {
+    title: "Build a grade calculator",
+    description: "Use conditionals and functions to calculate a Thanaweya subject score.",
+    progress: 68,
+    rewardCoins: 120,
+  },
+  continueLearning: {
+    id: "python-loops",
+    title: "Loops That Think Like You",
+    courseTitle: "Python for Future Engineers",
+    thumbnailUrl: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=900&q=80",
+    progress: 74,
+    durationMinutes: 18,
+  },
+  recommendedLesson: {
+    id: "arrays-problems",
+    title: "Arrays Through Thanaweya Score Tables",
+    courseTitle: "Problem Solving Foundations",
+    thumbnailUrl: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=900&q=80",
+    progress: 0,
+    durationMinutes: 22,
+  },
+  upcomingExam: {
+    title: "Programming Logic Checkpoint",
+    subject: "Python Basics",
+    startsAt: new Date(Date.now() + 1000 * 60 * 60 * 36).toISOString(),
+  },
+  codingChallenge: {
+    title: "Bus Route Optimizer",
+    difficulty: "medium",
+    language: "JavaScript",
+    snippet: "function shortestRoute(stops, start, school) {\n  // return minimum transfers\n}",
+    rewardXP: 180,
+  },
+  recentActivity: [
+    { id: "a1", label: "Completed Python Variables quiz", timestamp: "10 minutes ago", type: "quiz" },
+    { id: "a2", label: "Watched Git commits lesson", timestamp: "42 minutes ago", type: "lesson" },
+    { id: "a3", label: "Earned Clean Code Starter badge", timestamp: "Yesterday", type: "badge" },
+    { id: "a4", label: "Solved Number Guessing challenge", timestamp: "Yesterday", type: "challenge" },
+    { id: "a5", label: "Finished daily mission", timestamp: "2 days ago", type: "mission" },
+  ],
+  leaderboard: [
+    { rank: 1, name: "Nour Adel", xp: 8420 },
+    { rank: 2, name: "Ahmed Samir", xp: 7960 },
+    { rank: 3, name: "Mariam Nabil", xp: 7310 },
+  ],
+  userRank: 18,
+  badges: [
+    { id: "b1", name: "Python Spark", description: "Finished your first Python module", earnedAt: "2026-06-17" },
+    { id: "b2", name: "Streak Keeper", description: "Studied for 7 days in a row", earnedAt: "2026-06-15" },
+    { id: "b3", name: "Debugger", description: "Fixed 10 broken snippets", earnedAt: "2026-06-13" },
+  ],
+};
