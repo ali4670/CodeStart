@@ -1,0 +1,137 @@
+You are given a task to integrate an existing React component in the codebase
+
+The codebase should support:
+- shadcn project structure  
+- Tailwind CSS
+- Typescript
+
+If it doesn't, provide instructions on how to setup project via shadcn CLI, install Tailwind or Typescript.
+
+Determine the default path for components and styles. 
+If default path for components is not /components/ui, provide instructions on why it's important to create this folder
+Copy-paste this component to /components/ui folder:
+```tsx
+infinite-ribbon.tsx
+import type * as React from "react";
+
+import { cn } from "@/lib/utils";
+
+export interface InfiniteRibbonProps {
+  repeat?: number;
+  duration?: number;
+  reverse?: boolean;
+  rotation?: number;
+  children: React.ReactNode;
+  className?: string;
+}
+
+const ribbonAnimationStyles = `
+@keyframes iconiq-infinite-ribbon {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes iconiq-infinite-ribbon-reverse {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .iconiq-infinite-ribbon-track {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+`;
+
+export function InfiniteRibbon({
+  repeat = 5,
+  duration = 10,
+  reverse = false,
+  rotation = 0,
+  children,
+  className,
+}: InfiniteRibbonProps) {
+  const repeatCount = Math.max(1, Math.floor(repeat));
+  const animationName = reverse
+    ? "iconiq-infinite-ribbon-reverse"
+    : "iconiq-infinite-ribbon";
+
+  return (
+    <div
+      className={cn(
+        "w-full max-w-full overflow-hidden bg-yellow-400 py-1 text-black text-lg dark:bg-yellow-500 dark:text-black",
+        className
+      )}
+      style={{ transform: `rotate(${rotation}deg)` }}
+    >
+      <span className="sr-only">{children}</span>
+      <div
+        aria-hidden="true"
+        className="iconiq-infinite-ribbon-track flex w-max whitespace-nowrap"
+        style={
+          {
+            "--ribbon-duration": `${Math.max(0.1, duration)}s`,
+            animation: `${animationName} var(--ribbon-duration) linear infinite`,
+          } as React.CSSProperties
+        }
+      >
+        {Array.from({ length: repeatCount * 2 }, (_, index) => (
+          <span className="mr-8 inline-block select-none" key={index}>
+            {children}
+          </span>
+        ))}
+      </div>
+      <style>{ribbonAnimationStyles}</style>
+    </div>
+  );
+}
+
+
+demo.tsx
+"use client";
+
+import { InfiniteRibbon } from "@/components/ui/infinite-ribbon";
+
+export function InfiniteRibbonPreview() {
+  return (
+    <>
+      <InfiniteRibbon className="absolute" duration={42} rotation={5}>
+        Craft crisp dashboards, lively landing pages, and polished product flows
+        with components that feel ready from the first click.
+      </InfiniteRibbon>
+      <InfiniteRibbon duration={42} reverse={true} rotation={-5}>
+        Craft crisp dashboards, lively landing pages, and polished product flows
+        with components that feel ready from the first click.
+      </InfiniteRibbon>
+    </>
+  );
+}
+
+export default InfiniteRibbonPreview
+```
+
+Implementation Guidelines
+ 1. Analyze the component structure and identify all required dependencies
+ 2. Review the component's argumens and state
+ 3. Identify any required context providers or hooks and install them
+ 4. Questions to Ask
+ - What data/props will be passed to this component?
+ - Are there any specific state management requirements?
+ - Are there any required assets (images, icons, etc.)?
+ - What is the expected responsive behavior?
+ - What is the best place to use this component in the app?
+
+Steps to integrate
+ 0. Copy paste all the code above in the correct directories
+ 1. Install external dependencies
+ 2. Fill image assets with Unsplash stock images you know exist
+ 3. Use lucide-react icons for svgs or logos if component requires them
